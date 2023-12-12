@@ -1,7 +1,10 @@
 package com.example.YesManthra.ModelClass;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
@@ -33,4 +36,12 @@ private List<Address>address=new ArrayList<>();
 @ElementCollection
 @CollectionTable(name="payment_information",joinColumns=@JoinColumn(name="user_id"))
 private List<PaymentInformation>Payment=new ArrayList<>();
+@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+@JsonIgnore
+private List<Rating>ratings=new ArrayList<>();
+@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+@JsonIgnore
+private List<Review>rivews=new ArrayList<>();
+private LocalDateTime createAt;
+
 }
