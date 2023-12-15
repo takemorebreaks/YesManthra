@@ -16,10 +16,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-@Data
-@NoArgsConstructor
+
 @Entity
 public class UserModelClass {
 @Id
@@ -34,17 +31,14 @@ private String role;
 //CascadeType.ALL parameter indicates that any operation performed on the User entity (such as persisting, merging, removing) 
 //will be cascaded to its associated Address entities.
 @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
-private List<Address> address = new ArrayList<>();
-
+private List<Address>address=new ArrayList<>();
 @Embedded
 @ElementCollection
 @CollectionTable(name="payment_information",joinColumns=@JoinColumn(name="user_id"))
-private List<PaymentInformation> payment = new ArrayList<>();
-
+private List<PaymentInformation>Payment=new ArrayList<>();
 @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 @JsonIgnore
 private List<Rating>ratings=new ArrayList<>();
-
 @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 @JsonIgnore
 private List<Review>rivews=new ArrayList<>();
